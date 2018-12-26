@@ -4,16 +4,16 @@ from flask import Flask, render_template, url_for
 #that flask knows where to look for templates and static files etc.
 app = Flask(__name__)
 
-post = [
+posts = [
     {
         'author': 'Alice Stang',
-        'titel': 'The first blog post',
+        'title': 'The first blog post',
         'content': 'The first content',
         'date': '2018-12-26'
     },
     {
         'author': 'David Stang',
-        'titel': 'The second blog post',
+        'title': 'The second blog post',
         'content': 'The second content',
         'date': '2018-12-27'
     }
@@ -23,7 +23,7 @@ post = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html', post=post)
+    return render_template('home.html', posts=posts, title='Blog Page!')
 
 @app.route("/about")
 def about():
