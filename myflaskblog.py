@@ -41,9 +41,10 @@ def register():
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form) 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+
     return render_template('login.html', title='Login', form=form) 
 
 #if you want to run it directly from python in debug mode without using the global 
