@@ -39,12 +39,19 @@ def register():
         #different alert messages possible
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
+    #else:
+    #    flash('Login unsuccessful. Please check username, email and password.', 'danger')
     return render_template('register.html', title='Register', form=form) 
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-
+    if form.validate_on_submit():
+        if form.email.data == 'alice@stacom.de' and form.password.data == 'test' :
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login unsuccessful. Please check username and password.', 'danger')
     return render_template('login.html', title='Login', form=form) 
 
 #if you want to run it directly from python in debug mode without using the global 
