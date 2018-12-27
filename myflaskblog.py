@@ -3,7 +3,8 @@ from flask import Flask, render_template, url_for
 #if we run the script with python directly its equal to __main__
 #that flask knows where to look for templates and static files etc.
 app = Flask(__name__)
-app.config['SECRET_KEY']=''
+#generated with python import secrets and secret.token_hex(16)
+app.config['SECRET_KEY']='0048eb592aa1faf4bc89e5ca99a68a85'
 
 posts = [
     {
