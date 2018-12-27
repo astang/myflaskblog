@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for
+from forms import RegistrationForm, LoginForm
 #__name__ is a special variable in python that is just the name of the module.
 #if we run the script with python directly its equal to __main__
 #that flask knows where to look for templates and static files etc.
