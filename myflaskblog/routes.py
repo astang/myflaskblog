@@ -36,10 +36,10 @@ def register():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
-        #db.session.commit()
+        db.session.commit()
         #different alert messages possible
         #sucess its a bootstrap class
-        flash(f'Account for has been created. You can now log in. ', 'success')
+        flash('Account for has been created. You can now log in. ', 'success')
         return redirect(url_for('login'))
     #else:
     #    flash('Login unsuccessful. Please check username, email and password.', 'danger')
