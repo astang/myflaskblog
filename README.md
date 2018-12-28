@@ -8,3 +8,6 @@ first flask trial to create a simple blog
 * https://getbootstrap.com/docs/4.0/getting-started/introduction/
 * https://github.com/astang/myflaskblog/branches
 
+* https://ohshitgit.com/
+* Step-by-step figure out the needed git command: https://sethrobertson.github.io/GitFixUm/fixup.html
+
