@@ -1,5 +1,5 @@
 from datetime import datetime
-from __main__ import db
+from myflaskblog import db #from __init__py not from __main__
 
 class User(db.Model) : 
     id = db.Column(db.Integer, primary_key=True)

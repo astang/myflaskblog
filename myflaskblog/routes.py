@@ -1,19 +1,7 @@
-from datetime import datetime
-from flask import Flask, render_template, url_for, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
-from forms import RegistrationForm, LoginForm
-from models import User, Post
-
-#__name__ is a special variable in python that is just the name of the module.
-#if we run the script with python directly its equal to __main__
-#that flask knows where to look for templates and static files etc.
-app = Flask(__name__)
-#generated with python import secrets and secret.token_hex(16)
-app.config['SECRET_KEY']='0048eb592aa1faf4bc89e5ca99a68a85'
-#set database SQL lite for now
-app.config['SQLAlchemy_DATABASE_URI'] ='sqlite:///site.db'
-#create a SQL Instance
-db = SQLAlchemy(app)
+from flask import render_template, url_for, flash, redirect
+from myflaskblog import app
+from myflaskblog.forms import RegistrationForm, LoginForm
+from myflaskblog.models import User, Post
 
 posts = [
     {
@@ -61,7 +49,3 @@ def login():
         else:
             flash('Login unsuccessful. Please check username and password.', 'danger')
     return render_template('login.html', title='Login', form=form) 
-
-#if you want to run it directly from python in debug mode without using the global 
-if __name__=='__main__':
-    app.run(debug=True)
