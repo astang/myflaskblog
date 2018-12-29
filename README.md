@@ -11,3 +11,6 @@ first flask trial to create a simple blog
 * https://ohshitgit.com/
 * Step-by-step figure out the needed git command: https://sethrobertson.github.io/GitFixUm/fixup.html
 
+Used pictures:
+* GitCat: https://www.iconfinder.com/icons/2993772/github_logo_media_social_icon
+
