@@ -9,5 +9,52 @@
         </div>
         </div>
         <!-- FORM HERE -->
+        <!-- enctype  -->
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <!-- hidden_tag method (addidng csrf - crossside token) in combination with secret key: protect form against certain attacks -->
+                    {{form.hidden_tag()}}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4"> Account Information </legend>
+                        <div class="form-group">
+                            <!-- Variables specified in forms.py -->
+                            {{form.username.label(class="form-control-label")}} 
+                            {% if form.username.errors %} 
+                                {{ form.username(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <span> {{ error }} </span>
+                                    {% endfor %}
+                                </div>
+                            {% else %} 
+                                {{ form.username(class="form-control form-control-lg") }} 
+                            {% endif %}           
+                        </div>
+                        <div class="form-group">
+                            {{form.email.label(class="form-control-label")}} 
+                            {% if form.email.errors %} 
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span> {{ error }} </span>
+                                        {% endfor %}
+                                    </div>
+                            {% else %} 
+                                {{ form.email(class="form-control form-control-lg") }} 
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                                {{form.picture.label()}} 
+                                {{form.picture(class="form-control-file")}} 
+                                {% if form.picture.errors  %}
+                                    {% for error in form.picture.errors %}
+                                     <!-- invalid not possible, handeling a bit different cause its a File type -->
+                                        <span class="text-danger"> {{ error }} </span>
+                                    {% endfor %}
+                                {% endif %}
+                    </fieldset>
+                    <div class="form-group">
+                        {{form.submit(class="btn btn-outline-info")}}
+                    </div>
+                </form>
     </div>
 {% endblock content %}

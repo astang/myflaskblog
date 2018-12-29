@@ -1,9 +1,11 @@
 #Flasi extensions to write python code which will be converted to html (WebDeveloper are writing Forms in html)
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from myflaskblog.models import User
+
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
@@ -30,6 +32,7 @@ class LoginForm(FlaskForm):
 class UpdateAccountForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg','png'])])
     submit = SubmitField('Update')
 
     def validate_username(self, username):
@@ -38,7 +41,7 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('User name already exists. Please choose a different one.')
     def validate_email(self, email):
-        if username.email != current_user.email:
+        if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('email already exists. Please choose a different one.')

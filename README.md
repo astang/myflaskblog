@@ -13,4 +13,5 @@ first flask trial to create a simple blog
 
 Used pictures:
 * GitCat: https://www.iconfinder.com/icons/2993772/github_logo_media_social_icon
+* fox: https://www.iconfinder.com/iconsets/icontober
 
