@@ -8,25 +8,26 @@ from myflaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, Po
 from myflaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-posts = [
-    {
-        'author': 'Alice Stang',
-        'title': 'The first blog post',
-        'content': 'The first content',
-        'date': '2018-12-26'
-    },
-    {
-        'author': 'David Stang',
-        'title': 'The second blog post',
-        'content': 'The second content',
-        'date': '2018-12-27'
-    }
-]
+# posts = [
+#     {
+#         'author': 'Alice Stang',
+#         'title': 'The first blog post',
+#         'content': 'The first content',
+#         'date': '2018-12-26'
+#     },
+#     {
+#         'author': 'David Stang',
+#         'title': 'The second blog post',
+#         'content': 'The second content',
+#         'date': '2018-12-27'
+#     }
+# ]
 
 #define the routes
 @app.route("/")
 @app.route("/home")
 def home():
+    posts = Post.query.all()
     return render_template('home.html', posts=posts, title='Blog Page!')
 
 @app.route("/about")
@@ -111,6 +112,9 @@ def account():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
+        post = Post(title = form.title.data, content = form.content.data, author = current_user)
+        db.session.add(post)
+        db.session.commit()
         flash('Your Post has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create_post.html', title='New Post', form=form) 
