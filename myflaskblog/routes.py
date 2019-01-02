@@ -125,3 +125,12 @@ def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
 
+@app.route("/post/<int:post_id>/update")
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+        #403 is a http abort import for forbidden route
+    return render_template('create_post.html', title='Update Post', form=form) 
