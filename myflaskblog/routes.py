@@ -1,7 +1,7 @@
 import secrets 
 import os
 from PIL import Image
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 #from __init__.py can be called by packages name itself
 from myflaskblog import app, db, bcrypt
 from myflaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
@@ -119,4 +119,9 @@ def new_post():
         return redirect(url_for('home'))
     return render_template('create_post.html', title='New Post', form=form) 
     
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    #if it doesnt exist return 404 
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title=post.title, post=post)
 
