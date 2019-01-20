@@ -32,3 +32,4 @@ mail = Mail(app)
 
 #has to be done below otherwise stuck in a import loop between zhe files
 from myflaskblog import routes
+
